@@ -9,7 +9,6 @@ import (
 
 	"testing"
 
-
 	// "app/transaction"
 
 	"github.com/kataras/iris/v12/httptest"
@@ -17,21 +16,21 @@ import (
 
 const (
 	numberRequest = 100
-	mainAccount = "nVrsWDeiTX"
+	mainAccount   = "nVrsWDeiTX"
 )
 
 func init() {
-    rand.Seed(time.Now().UnixNano())
+	rand.Seed(time.Now().UnixNano())
 }
 
 var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 func RandStringRunes(n int) string {
-    b := make([]rune, n)
-    for i := range b {
-        b[i] = letterRunes[rand.Intn(len(letterRunes))]
-    }
-    return string(b)
+	b := make([]rune, n)
+	for i := range b {
+		b[i] = letterRunes[rand.Intn(len(letterRunes))]
+	}
+	return string(b)
 }
 
 func TestApp(t *testing.T) {
@@ -49,32 +48,30 @@ func TestApp(t *testing.T) {
 	balance := uint64(resp.JSON().Object().Raw()["payload"].(map[string]interface{})["user"].(map[string]interface{})["balance"].(float64))
 	fmt.Println(balance)
 
-	
-	for i:=0; i<numberRequest; i++ {
+	for i := 0; i < numberRequest; i++ {
 		wg.Add(1)
 		account := RandStringRunes(10)
 		go func() {
 			e.GET("/register").WithQuery("account", account).Expect().Status(httptest.StatusOK)
 			e.GET("/detail").WithQuery("account", account).Expect().Status(httptest.StatusOK)
-			
+
 			e.GET("/transfer").
 				WithQuery("from", mainAccount).
 				WithQuery("to", account).
 				WithQuery("amount", 100).
 				Expect().
 				Status(httptest.StatusOK)
-			
+
 			e.GET("/transfer").
 				WithQuery("from", account).
 				WithQuery("to", mainAccount).
 				WithQuery("amount", 50).
 				Expect().
-				Status(httptest.StatusOK)			
+				Status(httptest.StatusOK)
 
 			wg.Done()
-			} ()
-		
-		
+		}()
+
 	}
 
 	wg.Wait()
@@ -83,7 +80,7 @@ func TestApp(t *testing.T) {
 	newResp.Status(httptest.StatusOK)
 	newBalance := uint64(newResp.JSON().Object().Raw()["payload"].(map[string]interface{})["user"].(map[string]interface{})["balance"].(float64))
 
-	if (balance - (numberRequest * 100 - numberRequest * 50)) != newBalance {
-		t.Errorf("Wrong expect Balance")
+	if (balance - (numberRequest*100 - numberRequest*50)) != newBalance {
+		t.Error("Wrong expect Balance ", (balance - (numberRequest*100 - numberRequest*50)), newBalance)
 	}
 }

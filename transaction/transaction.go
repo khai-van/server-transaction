@@ -146,8 +146,8 @@ func (r *repo) GetListTransaction(account string) ([]Transaction, error) {
 				},
 			},
 		},
-		opts,
-	)
+			opts,
+		)
 
 	if err != nil {
 		return listTransaction, err

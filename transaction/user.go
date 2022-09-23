@@ -12,7 +12,7 @@ import (
 type User struct {
 	ID      primitive.ObjectID `json:"_id,omitempty" bson:"_id"`
 	Account string             `json:"account"`
-	Balance uint64            `json:"balance"`
+	Balance uint64             `json:"balance"`
 }
 
 func (r *repo) GetUser(account string) (User, error) {

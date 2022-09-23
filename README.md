@@ -104,6 +104,7 @@ response success:
 
   <li>Nhược điểm:
     <ul>
+        <li>Chưa có cơ chế hoàn lại balance nếu có sự cố khi update balance, chỉ có log và trace từ trạng thái của transaction</li>
         <li>Mã lỗi còn hạn chế</li>
         <li>Thiếu các cơ chế xác minh authoriztion</li>
     </ul>

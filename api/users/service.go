@@ -67,8 +67,8 @@ func (service *UserService) getDetail(ctx iris.Context) {
 	//response
 	ctx.JSON(Response{
 		Message: "Success",
-		Payload: iris.Map {
-			"user": resUser,
+		Payload: iris.Map{
+			"user":         resUser,
 			"transactions": resTransaction,
 		},
 	})
