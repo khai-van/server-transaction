@@ -1,0 +1,7 @@
+ServerName: My Project
+Env: development
+Host: 127.0.0.1
+Port: 8080
+MongoConfig: 
+  DSN: "mongodb+srv://khaivan:BpJDaL595KO3AzG6@cluster0.zcujolh.mongodb.net/?retryWrites=true&w=majority"
+  DB: "Transaction"
