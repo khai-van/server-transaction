@@ -1,12 +1,12 @@
 Command chạy
 
-<code>
+```bash
 go get -u github.com/kataras/iris/v12@master
 
 go mod tidy
 
 go run main.go
-</code>
+```
 
 ## Cấu trúc của Project:
 
