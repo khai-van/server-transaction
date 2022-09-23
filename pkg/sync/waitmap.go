@@ -17,14 +17,6 @@ func WaitMap() *WaitMapObject {
 	return m
 }
 
-func (m *WaitMapObject) Wait(name string) {
-	m.mu.Lock()
-	for m.wg[name] {
-		m.cond.Wait()
-	}
-	m.mu.Unlock()
-}
-
 func (m *WaitMapObject) UnLock(name string) {
 	m.mu.Lock()
 	m.wg[name] = false
@@ -33,8 +25,10 @@ func (m *WaitMapObject) UnLock(name string) {
 }
 
 func (m *WaitMapObject) Lock(name string) {
-	m.Wait(name)
 	m.mu.Lock()
+	for m.wg[name] {
+		m.cond.Wait()
+	}
 	m.wg[name] = true
 	m.mu.Unlock()
 }

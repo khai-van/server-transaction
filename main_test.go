@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	numberRequest = 100
+	numberRequest = 1000
 	mainAccount   = "nVrsWDeiTX"
 )
 
