@@ -55,7 +55,7 @@ response success:
     "to": "xZYXbQfBay",
     "amount": 16790,
     "created_at": 1663932094,
-    "status": 0
+    "status": 1
   }
 }
 ```

@@ -120,6 +120,8 @@ func (r *repo) Transfer(from string, to string, amount uint64) (Transaction, err
 	)
 	if err != nil {
 		log.Fatal("Error when update status success", err)
+	} else {
+		doc.Status = Success
 	}
 
 	return doc, nil
