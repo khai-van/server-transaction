@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	numberRequest = 10000        // number of register user
+	numberRequest = 1000         // number of register user
 	mainAccount   = "nVrsWDeiTX" // default user with big balance
 )
 

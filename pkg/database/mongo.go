@@ -49,11 +49,6 @@ func createUserCollection(ctx context.Context, db *mongo.Database) {
 				},
 				Options: &options.IndexOptions{Unique: &boolenVar},
 			},
-			{
-				Keys: bson.M{
-					"balance": 1,
-				},
-			},
 		},
 	)
 }
@@ -64,27 +59,6 @@ func createTransactionCollection(ctx context.Context, db *mongo.Database) {
 
 	db.Collection("transaction").Indexes().CreateMany(
 		ctx,
-		[]mongo.IndexModel{
-			{
-				Keys: bson.M{
-					"from": 1,
-				},
-			},
-			{
-				Keys: bson.M{
-					"to": 1,
-				},
-			},
-			{
-				Keys: bson.M{
-					"amount": 1,
-				},
-			},
-			{
-				Keys: bson.M{
-					"created_at": 1,
-				},
-			},
-		},
+		[]mongo.IndexModel{},
 	)
 }

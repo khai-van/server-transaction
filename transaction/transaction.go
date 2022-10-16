@@ -24,10 +24,10 @@ type Transaction struct {
 type Status int32 //enum for status transaction
 
 const (
-	Create     Status = 0
-	Success           = 1
-	FailInFrom        = 2
-	FailInTo          = 3
+	Create     Status = iota
+	Success     
+	FailInFrom  
+	FailInTo    
 )
 
 func (r *repo) Transfer(from string, to string, amount uint64) (Transaction, error) {
